@@ -4,9 +4,10 @@ class AccessToken < ApplicationRecord
 
 	belongs_to :user
 
+	scope :by_date, -> { order(created_at: :desc) }
+
 	before_validation :assign_token, on: :create
-
-
+	
 	private
 
 		def assign_token

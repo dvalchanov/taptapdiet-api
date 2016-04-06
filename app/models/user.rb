@@ -6,6 +6,7 @@ class User < ApplicationRecord
 	has_many :access_tokens
   has_many :days
 
+  after_create :create_first_day
 
 	class << self
 		def create_from_facebook!(params)
@@ -17,6 +18,10 @@ class User < ApplicationRecord
 			user.fb_token_expiration_date = params[:fb_token_expiration_date]
 			[user.tap(&:save!), new_record]
 		end
+	end
+
+	def create_first_day
+		days.create!
 	end
 end
 

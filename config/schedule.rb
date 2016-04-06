@@ -24,6 +24,6 @@
 set :environment, "development"
 set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 
-every 1.hour do
-	runner "Day.create_for_user"
+every 1.hour, at: 10 do
+	runner "DayGenerator.generate"
 end

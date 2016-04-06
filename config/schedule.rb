@@ -21,11 +21,9 @@
 
 #env :GEM_PATH, ENV['GEM_PATH']
 
-#set :environment, "development"
+set :environment, "development"
 set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 
-RAILS_ROOT = File.dirname(__FILE__) + '/..'
-
-every 1.minute do
-	
+every 1.hour do
+	runner "Day.create_for_user"
 end

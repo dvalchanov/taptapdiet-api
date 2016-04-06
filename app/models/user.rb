@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :fb_token_expiration_date, presence: true
 
 	has_many :access_tokens
+  has_many :days
 
 
 	class << self

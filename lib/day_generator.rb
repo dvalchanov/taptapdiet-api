@@ -9,7 +9,6 @@ module DayGenerator
 				unless day == last_day
 	    		user.days.create
 	    	end
-	    	
 			end
 	  end
 	end

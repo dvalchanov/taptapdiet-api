@@ -7,6 +7,11 @@ class AccessToken < ApplicationRecord
 	scope :by_date, -> { order(created_at: :desc) }
 
 	before_validation :assign_token, on: :create
+
+	def expired?
+    expires_at < Time.zone.now
+  end
+
 	
 	private
 

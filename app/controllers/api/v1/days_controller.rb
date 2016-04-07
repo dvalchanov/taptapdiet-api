@@ -1,5 +1,5 @@
 class Api::V1::DaysController < Api::BaseController
 	def index
-		render text: 'Thanks for sending a GET request with cURL!'
+    @days = current_user.days.limit(params[:limit].to_i || 10).offset(params[:offset].to_i || 0)
 	end
 end

@@ -21,7 +21,7 @@ class User < ApplicationRecord
 	end
 
 	def create_first_day
-		days.create!
+     days.create!
 	end
 end
 

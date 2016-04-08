@@ -4,7 +4,7 @@ module DayGenerator
 	  def generate
 	    User.all.each do |user|
 	    	 day = ActiveSupport::TimeZone.new(user.time_zone).now.day
-	    	 last_day = user.days.last.created_at.in_time_zone(user.time_zone).day
+	    	 last_day = user.days.order("created_at ASC").last.created_at.in_time_zone(user.time_zone).day
 
 				unless day == last_day
 	    		user.days.create

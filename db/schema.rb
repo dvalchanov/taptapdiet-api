@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403074740) do
+ActiveRecord::Schema.define(version: 20160409055228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,21 +35,13 @@ ActiveRecord::Schema.define(version: 20160403074740) do
 
   add_index "days", ["user_id"], name: "index_days_on_user_id", using: :btree
 
-  create_table "ingredients", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "meal_id",    null: false
-    t.string   "title",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "ingredients", ["meal_id"], name: "index_ingredients_on_meal_id", using: :btree
-
   create_table "meals", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "day_id",     null: false
-    t.string   "title",      null: false
+    t.uuid     "day_id",      null: false
+    t.string   "title",       null: false
     t.text     "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "ingredients"
   end
 
   add_index "meals", ["day_id"], name: "index_meals_on_day_id", using: :btree

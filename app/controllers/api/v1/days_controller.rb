@@ -1,5 +1,7 @@
 class Api::V1::DaysController < Api::BaseController
 	def index
-    @days = current_user.days.limit(params[:limit].to_i || 10).offset(params[:offset].to_i || 0)
+    limit = (params[:limit] || 10).to_i
+    offset = (params[:offset] || 0).to_i
+    @days = current_user.days.limit(limit).offset(offset)
 	end
 end

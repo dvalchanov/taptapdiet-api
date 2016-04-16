@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409055228) do
+ActiveRecord::Schema.define(version: 20160416111545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,13 +35,26 @@ ActiveRecord::Schema.define(version: 20160409055228) do
 
   add_index "days", ["user_id"], name: "index_days_on_user_id", using: :btree
 
+  create_table "evaluations", force: :cascade do |t|
+    t.uuid     "day_id",                 null: false
+    t.integer  "rating",     default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "evaluations", ["day_id"], name: "index_evaluations_on_day_id", using: :btree
+
   create_table "meals", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "day_id",      null: false
-    t.string   "title",       null: false
-    t.text     "image"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.uuid     "day_id",              null: false
+    t.string   "title",               null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.text     "ingredients"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "image"
   end
 
   add_index "meals", ["day_id"], name: "index_meals_on_day_id", using: :btree

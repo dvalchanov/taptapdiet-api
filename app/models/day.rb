@@ -8,7 +8,7 @@ class Day < ApplicationRecord
     ratings = evaluations.pluck(:rating)
     size = ratings.size
     sum = ratings.reduce(0, :+)
-    sum/(size-1)
+    sum/(size-1) unless size == 0
   end
 end
 

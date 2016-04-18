@@ -6,7 +6,7 @@ class User < ApplicationRecord
 	has_many :access_tokens
   has_many :days
 
-  after_create :create_first_day, :create_rating
+  after_create :create_first_day
 
 	class << self
 		def create_from_facebook!(params)
@@ -23,10 +23,6 @@ class User < ApplicationRecord
 	def create_first_day
      days.create!
 	end
-
-  def create_rating
-    days.first.evaluations.create!
-  end
 end
 
 

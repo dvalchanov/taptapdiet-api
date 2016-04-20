@@ -1,7 +1,7 @@
 class Day < ApplicationRecord
   belongs_to :user
-  has_many :meals
-  has_many :evaluations
+  has_many :meals, dependent: :destroy
+  has_many :evaluations, dependent: :destroy
 
 
   def average_rating

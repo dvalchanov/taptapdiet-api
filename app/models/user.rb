@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates :fb_token_expiration_date, presence: true
 
 	has_many :access_tokens
-  has_many :days
+  has_many :days, dependent: :destroy
 
   after_create :create_first_day
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420075200) do
+ActiveRecord::Schema.define(version: 20160426132241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,14 +35,14 @@ ActiveRecord::Schema.define(version: 20160420075200) do
 
   add_index "days", ["user_id"], name: "index_days_on_user_id", using: :btree
 
-  create_table "evaluations", force: :cascade do |t|
+  create_table "feelings", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "day_id",     null: false
-    t.float    "rating",     null: false
+    t.integer  "value",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "evaluations", ["day_id"], name: "index_evaluations_on_day_id", using: :btree
+  add_index "feelings", ["day_id"], name: "index_feelings_on_day_id", using: :btree
 
   create_table "meals", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "day_id",              null: false

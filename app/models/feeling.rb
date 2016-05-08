@@ -6,5 +6,6 @@ class Feeling < ApplicationRecord
   VALUES.each_with_index do |meth, index|
     define_method("#{meth}?") { value == index }
   end
-
 end
+
+

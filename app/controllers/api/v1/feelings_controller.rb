@@ -6,6 +6,14 @@ class Api::V1::DaysController < Api::BaseController
     head :unprocessable_entity if @feeling.errors.present?
   end
 
+  def update
+    @day = current_user.days.find(params[:day_id])
+    @feeling = @day.feelings.find(params[:id])
+    @feeling.update(feeling_params)
+
+    head :unprocessable_entity if @feeling.errors.present?
+  end
+
   private
 
     def feeling_params

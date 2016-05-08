@@ -10,8 +10,6 @@ class Api::BaseController < ApplicationController
 			render json: { error: 'UNAUTHORIZED', code: 401 }, status: :unauthorized
 		end
 
-		
-
 		def current_user
 			@current_user.presence || authenticate_with_auth_token
 		end

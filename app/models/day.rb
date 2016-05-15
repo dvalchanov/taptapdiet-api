@@ -4,7 +4,11 @@ class Day < ApplicationRecord
   has_many :feelings, dependent: :destroy
 
   def last_feeling
-    feelings.last.value
+    if feelings.size != 0
+      feelings.order(created_at: :asc).last.value
+    else
+      nil
+    end
   end
 
 end

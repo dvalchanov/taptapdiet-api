@@ -35,15 +35,6 @@ ActiveRecord::Schema.define(version: 20160426132241) do
 
   add_index "days", ["user_id"], name: "index_days_on_user_id", using: :btree
 
-  create_table "evaluations", force: :cascade do |t|
-    t.uuid     "day_id",     null: false
-    t.float    "rating",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "evaluations", ["day_id"], name: "index_evaluations_on_day_id", using: :btree
-
   create_table "feelings", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "day_id",     null: false
     t.integer  "value",      null: false

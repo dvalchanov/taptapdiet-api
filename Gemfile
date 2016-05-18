@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'awesome_print'
 gem 'timecop', '~> 0.8.1'
 gem 'active_model_serializers'
+gem 'factory_girl_rails'
+gem 'rspec-rails', '~> 3.0'
+gem 'rspec_api_documentation'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -36,6 +39,7 @@ gem 'active_model_serializers'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'database_cleaner'
 end
 
 group :development do

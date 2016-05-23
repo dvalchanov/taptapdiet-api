@@ -8,7 +8,7 @@ class Api::V1::MealsController < Api::BaseController
 
   def update
     @day = current_user.days.find(params[:day_id])
-    @meal = @day.meals.find(params[:day_id])
+    @meal = @day.meals.find(params[:id])
     @meal.update(meal_params)
 
     head :unprocessable_entity if @meal.errors.present?

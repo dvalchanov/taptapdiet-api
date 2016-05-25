@@ -3,6 +3,7 @@ class Api::V1::MealsController < Api::BaseController
   def create
     @day = current_user.days.find(params[:day_id])
     @meal = @day.meals.create!(meal_params)
+    
     head :unprocessable_entity if @meal.errors.present?
   end
 

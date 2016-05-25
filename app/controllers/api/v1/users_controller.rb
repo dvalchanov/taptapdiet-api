@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::BaseController
 
-  skip_before_filter :authenticate!, :if => Proc.new { |c| c.request.format == 'application/json' }
+  skip_before_action :authenticate!, :if => Proc.new { |c| c.request.format == 'application/json' }
 
   def create
     @user, new_record = User.create_from_facebook!(create_params)

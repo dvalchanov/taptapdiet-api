@@ -13,9 +13,5 @@ class Day < ApplicationRecord
     end
   end
 
-  def search
-    @results = Meal.where("title ILIKE ?", params[:title])
-  end
-
 end
 

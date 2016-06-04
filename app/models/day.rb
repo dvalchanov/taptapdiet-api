@@ -4,7 +4,7 @@ class Day < ApplicationRecord
   has_many :feelings, dependent: :destroy
 
   scope :ordered, -> { order(created_at: :desc) }
-  scope :search, -> (title) { where('title LIKE ?', "%#{title}%") }
+  scope :search, -> (title) { where('title LIKE ?', "%#{title.downcase}%") }
 
   def last_feeling
     if feelings.size != 0

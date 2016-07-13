@@ -17,6 +17,7 @@ class Api::V1::UsersController < Api::BaseController
       :fb_token,
       :time_zone,
       :fb_token_expiration_date,
+      :user_name
     )
   end
 end

@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426132241) do
+ActiveRecord::Schema.define(version: 20160710081756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,26 +22,23 @@ ActiveRecord::Schema.define(version: 20160426132241) do
     t.datetime "expires_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_access_tokens_on_user_id", using: :btree
   end
-
-  add_index "access_tokens", ["user_id"], name: "index_access_tokens_on_user_id", using: :btree
 
   create_table "days", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_days_on_user_id", using: :btree
   end
-
-  add_index "days", ["user_id"], name: "index_days_on_user_id", using: :btree
 
   create_table "feelings", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "day_id",     null: false
     t.integer  "value",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["day_id"], name: "index_feelings_on_day_id", using: :btree
   end
-
-  add_index "feelings", ["day_id"], name: "index_feelings_on_day_id", using: :btree
 
   create_table "meals", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "day_id",      null: false
@@ -51,9 +47,8 @@ ActiveRecord::Schema.define(version: 20160426132241) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.text     "ingredients"
+    t.index ["day_id"], name: "index_meals_on_day_id", using: :btree
   end
-
-  add_index "meals", ["day_id"], name: "index_meals_on_day_id", using: :btree
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.text     "fb_token",                                                        null: false
@@ -62,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160426132241) do
     t.text     "time_zone",                default: "Pacific Time (US & Canada)", null: false
     t.datetime "created_at",                                                      null: false
     t.datetime "updated_at",                                                      null: false
+    t.string   "user_name"
   end
 
 end

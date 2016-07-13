@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 	namespace :api do
     namespace :v1, defaults: { format: :json } do
       resources :users, only: [:create]
+      resources :invites, only: [:create]
       
       resources :days, only: [:index] do 
         resources :feelings, only: [:create, :update]

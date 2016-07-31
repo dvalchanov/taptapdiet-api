@@ -14,6 +14,7 @@ class User < ApplicationRecord
 			new_record = user.new_record?
 
       user.user_name = params[:user_name]
+      
 			user.time_zone = params[:time_zone]
 			user.fb_token = params[:fb_token]
 			user.fb_token_expiration_date = params[:fb_token_expiration_date]

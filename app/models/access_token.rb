@@ -8,15 +8,15 @@ class AccessToken < ApplicationRecord
 
 	before_validation :assign_token, on: :create
 
-	def expired?
+  def expired?
     expires_at < Time.zone.now
   end
 
 	
 	private
 
-		def assign_token
-			self.token = SecureRandom.hex(32)
-			self.expires_at = 1.year.from_now
-		end
+	def assign_token
+	  self.token = SecureRandom.hex(32)
+	  self.expires_at = 1.year.from_now
+  end
 end

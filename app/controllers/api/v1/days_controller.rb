@@ -4,9 +4,9 @@ class Api::V1::DaysController < Api::BaseController
     offset = (params[:offset] || 0).to_i
     if params[:title]
       title = params[:title]
-      @days = current_user.days.limit(limit).offset(offset).ordered.joins(:meals).uniq.search(title)
+      @days = current_user.days.limit_and_offset(limit, offset).ordered.joins(:meals).uniq.search(title)
     else
-      @days = current_user.days.limit(limit).offset(offset).ordered
+      @days = current_user.days.limit_and_offset(limit, offset).ordered
     end
 	end
 end

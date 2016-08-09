@@ -5,16 +5,10 @@ class Day < ApplicationRecord
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :search, -> (title) { where('title ILIKE ?', "%#{title.downcase}%") }
+  scope :limit_and_offset, -> (limit, offset) { limit(limit).offset(offset) }
 
   def last_feeling
-    if feelings.size != 0
-      feelings.order(created_at: :asc).last.value
-    else
-      nil
-    end
+    feelings.order(created_at: :asc).last.try(:value) unless feelings.size == 0
   end
-
-
-
 end
 

@@ -6,6 +6,7 @@ class Api::BaseController < ApplicationController
   private
 
   def authenticate!
+    return if current_user.present?
     render json: { error: 'UNAUTHORIZED', code: 401 }, status: :unauthorized
   end
 
